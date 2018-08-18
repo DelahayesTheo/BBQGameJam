@@ -28,7 +28,6 @@ public class PowerUpManager : MonoBehaviour {
     {
         if (collision.gameObject.layer == 8) {
             name = collision.gameObject.name;
-            Debug.Log(name);
             if (name == "SpeedBoost")
             {
                 StartCoroutine(SpeedPowerUp());
