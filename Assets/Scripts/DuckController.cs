@@ -52,7 +52,7 @@ public class DuckController : MonoBehaviour
             m_CanMoveCooldown -= Time.deltaTime;
             if (m_CanMoveCooldown <= 0f)
             {
-                m_Rigidbody2D.drag = 0f;
+                m_Rigidbody2D.drag = 1f;
             }
             else { return; }
 
