@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class PowerUpManager : MonoBehaviour {
     private DuckController playerController;
+
+    public float speedMultiplicator;
+    public float baseWalkingSpeed;
+
     // Use this for initialization
     void Start()
     {
         playerController = transform.parent.gameObject.GetComponent<DuckController>();
+        baseWalkingSpeed = playerController.walkingSpeed;
     }
 
     // Update is called once per frame
@@ -18,10 +23,12 @@ public class PowerUpManager : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-<<<<<<< HEAD
-=======
-        playerController.PowerUp(collision.gameObject.name);
+        name = collision.gameObject.name;
+        Debug.Log(name);
+        if ( name == "SpeedBoost")
+        {
+            playerController.walkingSpeed = baseWalkingSpeed * speedMultiplicator;
+        }
         Destroy(collision.gameObject);
->>>>>>> f31c1babe34b9a832051ef8c23bf37c5b5a11e8c
     }
 }
