@@ -8,17 +8,18 @@ public class DuckController : MonoBehaviour
     public float dashCooldown;
     public float dashSpeed;
     public int numPlayer;
+    public float transformParent;
 
     Rigidbody2D m_Rigidbody2D;
     float m_CurrentDashCooldown;
     float m_CurrentDashDuration;
     Vector2 lastVelocity;
 
+    Animator m_Animator;
     public ParticleSystem dashParticles;
-
     void Start()
     {
-
+        m_Animator = transform.GetComponentInChildren<Animator>();
         m_Rigidbody2D = transform.GetComponent<Rigidbody2D>();
         m_CurrentDashCooldown = 0f;
         lastVelocity = new Vector2(1, 0f);
@@ -64,7 +65,8 @@ public class DuckController : MonoBehaviour
 
         // Actual movement
         m_Rigidbody2D.velocity = new Vector2(h * walkingSpeed, v * walkingSpeed);
-
+        m_Animator.SetFloat("horizontal", h);
+        m_Animator.SetFloat("vertical", v);
 
         // Save last velocity
         if (!Mathf.Approximately(h, 0f) || !Mathf.Approximately(v, 0f))

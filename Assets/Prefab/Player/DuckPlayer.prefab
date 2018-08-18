@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4658314205243012}
   - component: {fileID: 212692917396432798}
+  - component: {fileID: 95472876343184680}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -361,7 +362,25 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.4
+--- !u!95 &95472876343184680
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1523158881999036}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fabacf887f819a848843561c7b2f8825, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114451721068072752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -377,6 +396,8 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 0.3
   dashSpeed: 400
+  numPlayer: 0
+  transformParent: 0
   dashParticles: {fileID: 198799652141774692}
 --- !u!114 &114558497352499078
 MonoBehaviour:
@@ -391,6 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMultiplicator: 2
   baseWalkingSpeed: 0
+  transformParent: {fileID: 0}
 --- !u!198 &198024367931008256
 ParticleSystem:
   m_ObjectHideFlags: 1
