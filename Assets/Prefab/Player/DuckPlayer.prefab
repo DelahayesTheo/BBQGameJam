@@ -394,9 +394,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingSpeed: 3
   dashDuration: 0.2
+<<<<<<< HEAD
+  dashCooldown: 0.3
+  dashSpeed: 400
+  numPlayer: 1
+=======
   dashCooldown: 0.6
   dashSpeed: 300
   numPlayer: 0
+>>>>>>> 6275b63f466a4bba98aa917a66eac184c6333e8b
   transformParent: 0
   dashParticles: {fileID: 198799652141774692}
 --- !u!114 &114558497352499078
