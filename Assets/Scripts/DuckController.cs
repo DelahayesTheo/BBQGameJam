@@ -7,6 +7,7 @@ public class DuckController : MonoBehaviour
     public float dashDuration;
     public float dashCooldown;
     public float dashSpeed;
+    public int numPlayer;
     public float transformParent;
 
     Rigidbody2D m_Rigidbody2D;
@@ -14,18 +15,18 @@ public class DuckController : MonoBehaviour
     float m_CurrentDashDuration;
     Vector2 lastVelocity;
 
+    Animator m_Animator;
     public ParticleSystem dashParticles;
-
     void Start()
     {
-
+        m_Animator = transform.GetComponentInChildren<Animator>();
         m_Rigidbody2D = transform.GetComponent<Rigidbody2D>();
         m_CurrentDashCooldown = 0f;
         lastVelocity = new Vector2(1, 0f);
     }
     private void Update()
     {
-        bool dash = CrossPlatformInputManager.GetButtonDown("Fire1");
+        bool dash = CrossPlatformInputManager.GetButtonDown(GetControl(numPlayer, "Dash"));
         if (dash && m_CurrentDashCooldown <= 0f)
         {
             m_CurrentDashDuration = dashDuration;
@@ -39,8 +40,8 @@ public class DuckController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float h = CrossPlatformInputManager.GetAxis("Horizontal");
-        float v = CrossPlatformInputManager.GetAxis("Vertical");
+        float h = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Horizontal"));
+        float v = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Vertical"));
 
         // Movement freeze after dash activation
         if (m_CurrentDashDuration > 0f)
@@ -64,12 +65,18 @@ public class DuckController : MonoBehaviour
 
         // Actual movement
         m_Rigidbody2D.velocity = new Vector2(h * walkingSpeed, v * walkingSpeed);
-
+        m_Animator.SetFloat("horizontal", h);
+        m_Animator.SetFloat("vertical", v);
 
         // Save last velocity
         if (!Mathf.Approximately(h, 0f) || !Mathf.Approximately(v, 0f))
         {
             lastVelocity = new Vector2(h, v);
         }
+    }
+
+    private string GetControl(int numPlayer, string action)
+    {
+        return action + numPlayer;
     }
 }

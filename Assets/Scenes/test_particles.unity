@@ -238,8 +238,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1071860227
-  m_SortingLayer: 2
+  m_SortingLayerID: -753668493
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 256f348119eb59a4385f8c2bae04100f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9564,6 +9564,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114451721068072752, guid: ca29e0258e1ef834b8529b851216d205,
+        type: 2}
+      propertyPath: numPlayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca29e0258e1ef834b8529b851216d205, type: 2}
   m_IsPrefabAsset: 0
@@ -9789,6 +9794,26 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0b573bcd74c6104d817f13c83426d0c, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1578024210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1825555170864814, guid: 4ad2b55907ed12b47bc1f5668da1e470,
+    type: 2}
+  m_PrefabInternal: {fileID: 2060295898}
+--- !u!58 &1578024213
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1578024210}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.19528008, y: -0.0078036785}
+  serializedVersion: 2
+  m_Radius: 0.35172737
 --- !u!1 &1839392751
 GameObject:
   m_ObjectHideFlags: 0
@@ -14370,6 +14395,21 @@ Prefab:
     - target: {fileID: 4758232996538772, guid: 4ad2b55907ed12b47bc1f5668da1e470, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 58952846897560970, guid: 4ad2b55907ed12b47bc1f5668da1e470,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: -0.1952801
+      objectReference: {fileID: 0}
+    - target: {fileID: 58952846897560970, guid: 4ad2b55907ed12b47bc1f5668da1e470,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.35172737
+      objectReference: {fileID: 0}
+    - target: {fileID: 58952846897560970, guid: 4ad2b55907ed12b47bc1f5668da1e470,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: -0.0078036785
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ad2b55907ed12b47bc1f5668da1e470, type: 2}
