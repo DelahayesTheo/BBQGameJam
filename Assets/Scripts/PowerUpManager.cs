@@ -33,6 +33,10 @@ public class PowerUpManager : MonoBehaviour {
             playerController.walkingSpeed = baseWalkingSpeed * speedMultiplicator;
         }
         Destroy(collision.gameObject);
+        if ( name == "SizeBoost")
+        {
+            transformParent.localScale = new Vector3(2 , 2 , 1 );
+        }
     }
        
 }
