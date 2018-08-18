@@ -7,6 +7,7 @@ public class DuckController : MonoBehaviour
     public float dashDuration;
     public float dashCooldown;
     public float dashSpeed;
+    public int numPlayer;
 
     Rigidbody2D m_Rigidbody2D;
     float m_CurrentDashCooldown;
@@ -24,7 +25,7 @@ public class DuckController : MonoBehaviour
     }
     private void Update()
     {
-        bool dash = CrossPlatformInputManager.GetButtonDown("Fire1");
+        bool dash = CrossPlatformInputManager.GetButtonDown(GetControl(numPlayer, "Dash"));
         if (dash && m_CurrentDashCooldown <= 0f)
         {
             m_CurrentDashDuration = dashDuration;
@@ -38,8 +39,8 @@ public class DuckController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float h = CrossPlatformInputManager.GetAxis("Horizontal");
-        float v = CrossPlatformInputManager.GetAxis("Vertical");
+        float h = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Horizontal"));
+        float v = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Vertical"));
 
         // Movement freeze after dash activation
         if (m_CurrentDashDuration > 0f)
@@ -70,5 +71,10 @@ public class DuckController : MonoBehaviour
         {
             lastVelocity = new Vector2(h, v);
         }
+    }
+
+    private string GetControl(int numPlayer, string action)
+    {
+        return action + numPlayer;
     }
 }
