@@ -13,6 +13,8 @@ public class DuckController : MonoBehaviour
     float m_CurrentDashDuration;
     Vector2 lastVelocity;
 
+    public ParticleSystem dashParticles;
+
     void Start()
     {
 
@@ -29,6 +31,8 @@ public class DuckController : MonoBehaviour
             m_CurrentDashCooldown = dashCooldown;
             m_Rigidbody2D.velocity = Vector2.zero;
             m_Rigidbody2D.AddForce(lastVelocity.normalized * dashSpeed);
+            dashParticles.transform.rotation = Quaternion.LookRotation(-lastVelocity.normalized);
+            dashParticles.Play();
         }
     }
 
@@ -41,8 +45,12 @@ public class DuckController : MonoBehaviour
         if (m_CurrentDashDuration > 0f)
         {
             m_CurrentDashDuration -= Time.deltaTime;
-            Debug.Log("Dash");
             return;
+        }
+
+        if (!dashParticles.isStopped)
+        {
+            dashParticles.Stop();
         }
 
         // Dash cooldown
