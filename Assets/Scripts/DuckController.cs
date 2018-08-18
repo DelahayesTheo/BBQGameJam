@@ -7,6 +7,7 @@ public class DuckController : MonoBehaviour
     public float dashDuration;
     public float dashCooldown;
     public float dashSpeed;
+    public float transformParent;
 
     Rigidbody2D m_Rigidbody2D;
     float m_CurrentDashCooldown;
