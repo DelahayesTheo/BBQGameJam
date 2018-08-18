@@ -18,5 +18,6 @@ public class PowerUpManager : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision)
     {
         playerController.PowerUp(collision.gameObject.name);
+        Destroy(collision.gameObject);
     }
 }

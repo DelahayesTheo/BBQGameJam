@@ -11,6 +11,23 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1759451891543924}
   m_IsPrefabAsset: 1
+--- !u!1 &1297027887541782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4242808228772650}
+  - component: {fileID: 58237277415973522}
+  - component: {fileID: 114887381301553080}
+  m_Layer: 0
+  m_Name: PowerUpManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1759451891543924
 GameObject:
   m_ObjectHideFlags: 0
@@ -23,7 +40,7 @@ GameObject:
   - component: {fileID: 50578121523509228}
   m_Layer: 0
   m_Name: DuckPlayerT
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,6 +77,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4242808228772650
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297027887541782}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4631014608487936}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4631014608487936
 Transform:
   m_ObjectHideFlags: 1
@@ -72,6 +102,7 @@ Transform:
   m_Children:
   - {fileID: 4694124445894340}
   - {fileID: 4936029548709018}
+  - {fileID: 4242808228772650}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -121,6 +152,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &58237277415973522
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297027887541782}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0021457672, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.35623407
 --- !u!58 &58995792368410644
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -147,7 +193,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9224873dd1a1e7243a41b2988bf7f4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 0
+  walkingSpeed: 3
+--- !u!114 &114887381301553080
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297027887541782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8b60500beb7dc4f908d852cbae927b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212556022405346390
 SpriteRenderer:
   m_ObjectHideFlags: 1
