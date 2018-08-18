@@ -148,6 +148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSpeed: 3
+  dashDuration: 0.2
+  dashCooldown: 0.3
+  dashSpeed: 400
 --- !u!212 &212692917396432798
 SpriteRenderer:
   m_ObjectHideFlags: 1
