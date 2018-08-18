@@ -895,6 +895,11 @@ Prefab:
       propertyPath: numPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 58547354434212318, guid: ca29e0258e1ef834b8529b851216d205,
+        type: 2}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca29e0258e1ef834b8529b851216d205, type: 2}
   m_IsPrefabAsset: 0
