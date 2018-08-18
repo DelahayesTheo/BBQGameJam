@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4675603755281888}
   - component: {fileID: 114558497352499078}
+  - component: {fileID: 58462956850042948}
   m_Layer: 0
   m_Name: PowerUpManager
   m_TagString: Untagged
@@ -211,6 +212,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &58462956850042948
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628040310608458}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.025772572, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.34536505
 --- !u!58 &58547354434212318
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -253,6 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00ed2d2c8b2965439ad62795a5a7a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedMultiplicator: 2
+  baseWalkingSpeed: 0
 --- !u!198 &198799652141774692
 ParticleSystem:
   m_ObjectHideFlags: 1
