@@ -6,6 +6,10 @@ TextureImporter:
     21300002: canards_de_base_1
     21300004: canards_de_base_2
     21300006: canards_de_base_3
+    21300008: canards_de_base_4
+    21300010: canards_de_base_5
+    21300012: canards_de_base_6
+    21300014: canards_de_base_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -91,13 +95,13 @@ TextureImporter:
       name: canards_de_base_0
       rect:
         serializedVersion: 2
-        x: 367
-        y: 620
-        width: 383
+        x: 1181
+        y: 1115
+        width: 382
         height: 349
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 1, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -111,12 +115,12 @@ TextureImporter:
       name: canards_de_base_1
       rect:
         serializedVersion: 2
-        x: 944
-        y: 627
-        width: 381
-        height: 349
+        x: 1215
+        y: 155
+        width: 382
+        height: 338
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -131,12 +135,12 @@ TextureImporter:
       name: canards_de_base_2
       rect:
         serializedVersion: 2
-        x: 190
-        y: 177
-        width: 511
-        height: 340
+        x: 2060
+        y: 1149
+        width: 428
+        height: 365
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -151,9 +155,69 @@ TextureImporter:
       name: canards_de_base_3
       rect:
         serializedVersion: 2
-        x: 1165
-        y: 178
-        width: 511
+        x: 2130
+        y: 675
+        width: 512
+        height: 340
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf7c0d7c5f54a45408c00b1f423027a3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: canards_de_base_4
+      rect:
+        serializedVersion: 2
+        x: 2159
+        y: 145
+        width: 445
+        height: 317
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c65c72de2fd6c484db5301b20a20adad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: canards_de_base_5
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 1114
+        width: 426
+        height: 364
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d776d846b019334e934c68c601cd439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: canards_de_base_6
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 656
+        width: 512
         height: 340
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -162,7 +226,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf7c0d7c5f54a45408c00b1f423027a3
+      spriteID: ba5f7d9d1a1840147b724bdf0fc2cf59
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: canards_de_base_7
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 149
+        width: 446
+        height: 317
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42ab31e0511267c4ca1b09b828a99ecd
       vertices: []
       indices: 
       edges: []
