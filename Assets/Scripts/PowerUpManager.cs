@@ -7,12 +7,15 @@ public class PowerUpManager : MonoBehaviour {
 
     public float speedMultiplicator;
     public float baseWalkingSpeed;
+    public Transform transformParent;
+   
 
     // Use this for initialization
     void Start()
     {
         playerController = transform.parent.gameObject.GetComponent<DuckController>();
         baseWalkingSpeed = playerController.walkingSpeed;
+        transformParent = transform.parent; 
     }
 
     // Update is called once per frame
@@ -31,4 +34,5 @@ public class PowerUpManager : MonoBehaviour {
         }
         Destroy(collision.gameObject);
     }
+       
 }
