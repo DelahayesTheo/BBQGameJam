@@ -396,7 +396,7 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 0.3
   dashSpeed: 400
-  numPlayer: 0
+  numPlayer: 1
   transformParent: 0
   dashParticles: {fileID: 198799652141774692}
 --- !u!114 &114558497352499078
