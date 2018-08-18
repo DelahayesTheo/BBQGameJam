@@ -6,15 +6,19 @@ public class PowerUpManager : MonoBehaviour {
     private DuckController playerController;
 
     public float speedMultiplicator;
-    public float baseWalkingSpeed;
+    private float baseWalkingSpeed;
+
+    public float dashMultiplicator;
+    private float baseDashSpeed;
+
     public Transform transformParent;
-   
 
     // Use this for initialization
     void Start()
     {
         playerController = transform.parent.gameObject.GetComponent<DuckController>();
         baseWalkingSpeed = playerController.walkingSpeed;
+        baseDashSpeed = playerController.dashSpeed;
         transformParent = transform.parent; 
     }
 
@@ -27,7 +31,7 @@ public class PowerUpManager : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 8) {
-            name = collision.gameObject.name;
+            name = collision.gameObject.tag;
             if (name == "SpeedBoost")
             {
                 StartCoroutine(SpeedPowerUp());
@@ -44,16 +48,18 @@ public class PowerUpManager : MonoBehaviour {
 
     IEnumerator SpeedPowerUp()
     {
-        playerController.walkingSpeed = baseWalkingSpeed * speedMultiplicator;
+        playerController.walkingSpeed *= speedMultiplicator;
+        playerController.dashSpeed *= dashMultiplicator;
         yield return new WaitForSeconds(5);
-        playerController.walkingSpeed = baseWalkingSpeed;
+        playerController.walkingSpeed /= speedMultiplicator;
+        playerController.dashSpeed /= dashMultiplicator;
     }
 
     IEnumerator SizePowerUp()
     {
-        transformParent.localScale = new Vector3(2, 2, 1);
+        transformParent.localScale += new Vector3(.5f, .5f, 0);
         yield return new WaitForSeconds(5);
-        transformParent.localScale = new Vector3(1, 1, 1);
+        transformParent.localScale -= new Vector3(.5f, .5f, 0);
     }
 
 
