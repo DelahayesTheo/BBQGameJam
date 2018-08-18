@@ -33,12 +33,13 @@ public class PowerUpManager : MonoBehaviour {
             {
                 StartCoroutine(SpeedPowerUp());
             }
-            Destroy(collision.gameObject);
+
 
             if (name == "SizeBoost")
             {
-                transformParent.localScale = new Vector3(2, 2, 1);
+                StartCoroutine(SizePowerUp());
             }
+            Destroy(collision.gameObject);
         }
     }
 
@@ -49,6 +50,13 @@ public class PowerUpManager : MonoBehaviour {
         playerController.walkingSpeed = baseWalkingSpeed;
     }
 
+    IEnumerator SizePowerUp()
+    {
+        transformParent.localScale = new Vector3(2, 2, 1);
+        yield return new WaitForSeconds(5);
+        transformParent.localScale = new Vector3(1, 1, 1);
+    }
 
-       
+
+
 }

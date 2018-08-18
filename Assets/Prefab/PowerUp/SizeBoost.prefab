@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 331714476244171296}
   - component: {fileID: 61165523579594858}
   m_Layer: 0
-  m_Name: New Prefab
+  m_Name: SizeBoost
   m_TagString: SizeBoost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
