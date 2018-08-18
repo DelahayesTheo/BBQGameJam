@@ -9,11 +9,13 @@ public class DuckController : MonoBehaviour
     public float dashSpeed;
     public int numPlayer;
     public float transformParent;
+    public float canMoveCooldownTime;
 
     Rigidbody2D m_Rigidbody2D;
     float m_CurrentDashCooldown;
     float m_CurrentDashDuration;
     Vector2 lastVelocity;
+    float m_CanMoveCooldown;
 
     Animator m_Animator;
     public ParticleSystem dashParticles;
@@ -45,6 +47,16 @@ public class DuckController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (m_CanMoveCooldown > 0f)
+        {
+            m_CanMoveCooldown -= Time.deltaTime;
+            if (m_CanMoveCooldown <= 0f)
+            {
+                m_Rigidbody2D.drag = 0f;
+            }
+            else { return; }
+
+        }
         float h = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Horizontal"));
         float v = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Vertical"));
 
@@ -87,13 +99,10 @@ public class DuckController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
-            if(m_CurrentDashDuration <= 0f)
-            {
-//                Vector2 otherPlayerVelocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
-//                collision.gameObject.GetComponent<DuckController>().Dash(otherPlayerVelocity);
-            }
+            m_Rigidbody2D.drag = 5f;
+            m_CanMoveCooldown = canMoveCooldownTime;
         }
     }
 }
