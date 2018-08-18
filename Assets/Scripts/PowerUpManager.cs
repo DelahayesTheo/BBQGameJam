@@ -26,13 +26,24 @@ public class PowerUpManager : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        name = collision.gameObject.name;
-        Debug.Log(name);
-        if ( name == "SpeedBoost")
-        {
-            playerController.walkingSpeed = baseWalkingSpeed * speedMultiplicator;
+        if (collision.gameObject.layer == 8) {
+            name = collision.gameObject.name;
+            Debug.Log(name);
+            if (name == "SpeedBoost")
+            {
+                StartCoroutine(SpeedPowerUp());
+            }
+            Destroy(collision.gameObject);
         }
-        Destroy(collision.gameObject);
     }
+
+    IEnumerator SpeedPowerUp()
+    {
+        playerController.walkingSpeed = baseWalkingSpeed * speedMultiplicator;
+        yield return new WaitForSeconds(5);
+        playerController.walkingSpeed = baseWalkingSpeed;
+    }
+
+
        
 }
