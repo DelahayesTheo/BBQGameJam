@@ -29,7 +29,7 @@ public class DuckController : MonoBehaviour
     private void Update()
     {
         bool dash = CrossPlatformInputManager.GetButtonDown(GetControl(numPlayer, "Dash"));
-        if (dash && m_CurrentDashCooldown <= 0f)
+        if (dash && m_CurrentDashCooldown <= 0f && m_CanMoveCooldown <= 0f)
         {
             Dash(lastVelocity.normalized);
             dashParticles.transform.rotation = Quaternion.LookRotation(-lastVelocity.normalized);
@@ -104,6 +104,6 @@ public class DuckController : MonoBehaviour
             m_Rigidbody2D.drag = 5f;
             m_CanMoveCooldown = canMoveCooldownTime;
         }
-        
+
     }
 }
