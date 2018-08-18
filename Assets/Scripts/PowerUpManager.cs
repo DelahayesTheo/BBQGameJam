@@ -22,14 +22,6 @@ public class PowerUpManager : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collision)
-<<<<<<< HEAD
-    {/*
-<<<<<<< HEAD
-=======
-        playerController.PowerUp(collision.gameObject.name);
-        Destroy(collision.gameObject);
->>>>>>> f31c1babe34b9a832051ef8c23bf37c5b5a11e8c*/
-=======
     {
         name = collision.gameObject.name;
         Debug.Log(name);
@@ -38,6 +30,5 @@ public class PowerUpManager : MonoBehaviour {
             playerController.walkingSpeed = baseWalkingSpeed * speedMultiplicator;
         }
         Destroy(collision.gameObject);
->>>>>>> 849e291f86b1a0cbe3d8eff4eafe1e7a9063eac8
     }
 }
