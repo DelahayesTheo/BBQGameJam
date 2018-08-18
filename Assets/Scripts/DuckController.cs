@@ -52,7 +52,7 @@ public class DuckController : MonoBehaviour
             m_CanMoveCooldown -= Time.deltaTime;
             if (m_CanMoveCooldown <= 0f)
             {
-                m_Rigidbody2D.drag = 0f;
+                m_Rigidbody2D.drag = 1f;
             }
             else { return; }
 
@@ -99,10 +99,11 @@ public class DuckController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bouee")
         {
             m_Rigidbody2D.drag = 5f;
             m_CanMoveCooldown = canMoveCooldownTime;
         }
+        
     }
 }
