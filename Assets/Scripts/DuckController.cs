@@ -25,7 +25,7 @@ public class DuckController : MonoBehaviour
     public ParticleSystem dashParticles;
     void Start()
     {
-        gameManagerScript = gameManager.GetComponent<GameManager>();
+        gameManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         m_Animator = transform.GetComponentInChildren<Animator>();
         m_Rigidbody2D = transform.GetComponent<Rigidbody2D>();
         m_CurrentDashCooldown = 0f;
@@ -50,7 +50,7 @@ public class DuckController : MonoBehaviour
         m_CurrentDashDuration = dashDuration;
         m_CurrentDashCooldown = dashCooldown;
         m_Rigidbody2D.velocity = Vector2.zero;
-        m_Rigidbody2D.AddForce(direction * dashSpeed * transform.localScale.x);
+        m_Rigidbody2D.AddForce(direction * dashSpeed * m_Rigidbody2D.mass);
     }
 
     void FixedUpdate()
