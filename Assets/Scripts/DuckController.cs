@@ -28,6 +28,8 @@ public class DuckController : MonoBehaviour
         m_CurrentDashCooldown = 0f;
         lastVelocity = new Vector2(1, 0f);
     }
+
+    float maxVelocityMagnitude;
     private void Update()
     {
         bool dash = CrossPlatformInputManager.GetButtonDown(GetControl(numPlayer, "Dash"));
@@ -37,7 +39,7 @@ public class DuckController : MonoBehaviour
             dashParticles.transform.rotation = Quaternion.LookRotation(-lastVelocity.normalized);
             dashParticles.Play();
         }
-        m_Rigidbody2D.velocity = Vector2.ClampMagnitude(m_Rigidbody2D.velocity, 3f);
+        m_Rigidbody2D.velocity = Vector2.ClampMagnitude(m_Rigidbody2D.velocity, 15f);
     }
 
     public void Dash(Vector2 direction)
