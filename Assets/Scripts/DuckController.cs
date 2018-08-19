@@ -18,13 +18,14 @@ public class DuckController : MonoBehaviour
     float m_CurrentDashDuration;
     Vector2 lastVelocity;
     float m_CanMoveCooldown;
+    public int controlsDirection;
 
-    public GameObject gameManager;
     private GameManager gameManagerScript;
     Animator m_Animator;
     public ParticleSystem dashParticles;
     void Start()
     {
+        controlsDirection = 1;
         gameManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         m_Animator = transform.GetComponentInChildren<Animator>();
         m_Rigidbody2D = transform.GetComponent<Rigidbody2D>();
@@ -50,7 +51,7 @@ public class DuckController : MonoBehaviour
         m_CurrentDashDuration = dashDuration;
         m_CurrentDashCooldown = dashCooldown;
         m_Rigidbody2D.velocity = Vector2.zero;
-        m_Rigidbody2D.AddForce(direction * dashSpeed * m_Rigidbody2D.mass);
+        m_Rigidbody2D.AddForce(direction * dashSpeed * m_Rigidbody2D.mass * controlsDirection);
     }
 
     void FixedUpdate()
@@ -88,14 +89,14 @@ public class DuckController : MonoBehaviour
             return;
         }
 
-        m_Animator.SetFloat("horizontal", h);
-        m_Animator.SetFloat("vertical", v);
+        m_Animator.SetFloat("horizontal", h * controlsDirection );
+        m_Animator.SetFloat("vertical", v * controlsDirection);
 
         // Save last velocity
         if (!Mathf.Approximately(h, 0f) || !Mathf.Approximately(v, 0f))
         {
             // Actual movement
-            m_Rigidbody2D.velocity = new Vector2(h * walkingSpeed, v * walkingSpeed);
+            m_Rigidbody2D.velocity = new Vector2(h * walkingSpeed * controlsDirection, v * walkingSpeed * controlsDirection);
             lastVelocity = new Vector2(h, v);
         }
     }

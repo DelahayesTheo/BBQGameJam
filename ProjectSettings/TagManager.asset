@@ -11,6 +11,8 @@ TagManager:
   - ArenaBox
   - Savon
   - DashBoost
+  - InvertControls
+  - Shield
   layers:
   - Default
   - TransparentFX

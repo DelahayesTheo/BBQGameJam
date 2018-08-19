@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     private Canvas canvas;
     public bool[] playersDead;
 
+    public GameObject[] players;
+
     private int nbPlayerDead;
     private int winner;
     private bool gameOver;
@@ -58,6 +60,23 @@ public class GameManager : MonoBehaviour {
 
     }
 
+    public void InvertControls (int numPlayer) 
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (i != numPlayer) {
+                players[i].GetComponent<DuckController>().controlsDirection = -1;
+            }
+        }
+    }
+
+    public void RestoreControls () 
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            players[i].GetComponent<DuckController>().controlsDirection = 1;
+        }
+    }
     IEnumerator WaitForCountdown() 
     {
         float start = Time.realtimeSinceStartup;
