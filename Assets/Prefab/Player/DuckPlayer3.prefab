@@ -437,6 +437,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128c96868be011541b21ab8f72d7f382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxMagnitudeInMovements: 15
+  bounceControl: 0.5
+  dashControl: 0.5
   walkingSpeed: 3
   dashDuration: 0.2
   dashCooldown: 0.6
@@ -446,6 +449,7 @@ MonoBehaviour:
   canMoveCooldownTime: 0.3
   maxVelocity: {x: 15, y: 15}
   controlsDirection: 0
+  gameManager: {fileID: 0}
   dashParticles: {fileID: 198671123510746646}
 --- !u!114 &114984891309736026
 MonoBehaviour:
@@ -5777,7 +5781,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5973,7 +5977,7 @@ ParticleSystem:
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        m_PreInfinity: 2
+        m_PreInfinity: 1
         m_PostInfinity: 2
         m_RotationOrder: 4
       minCurve:
@@ -6278,12 +6282,12 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 1, g: 1, b: 1, a: 0.39215687}
-        key3: {r: 0, g: 0, b: 0, a: 1}
-        key4: {r: 0, g: 0, b: 0, a: 0.39215687}
-        key5: {r: 0, g: 0, b: 0, a: 0.74509805}
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 0.39215687}
+        key2: {r: 1, g: 1, b: 1, a: 1}
+        key3: {r: 0, g: 0, b: 0, a: 0.39215687}
+        key4: {r: 0, g: 0, b: 0, a: 0.74509805}
+        key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
@@ -6294,17 +6298,17 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
-        atime1: 13107
-        atime2: 25278
-        atime3: 36356
-        atime4: 45250
-        atime5: 54456
+        atime0: 13107
+        atime1: 25278
+        atime2: 36356
+        atime3: 45250
+        atime4: 54456
+        atime5: 65535
         atime6: 65535
         atime7: 65535
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 7
+        m_NumAlphaKeys: 6
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
