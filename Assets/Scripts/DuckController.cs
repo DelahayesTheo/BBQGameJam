@@ -26,7 +26,6 @@ public class DuckController : MonoBehaviour
     private float posY;
 
     private bool isDead;
-    public GameObject gameManager;
     private GameManager gameManagerScript;
     Animator m_Animator;
     public ParticleSystem dashParticles;

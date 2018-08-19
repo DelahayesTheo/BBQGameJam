@@ -5,10 +5,11 @@ using UnityEngine;
 public class PowerUpManager : MonoBehaviour {
     private DuckController playerController;
     public GameObject shield;
-
+    private GameObject spawnedShield;
     public float speedMultiplicator;
     public float dashMultiplicator;
 
+    public bool shieldSpawned;
     private GameManager gameManagerScript;
     private float baseDashCooldown;
     private float baseCanMoveTime;
@@ -19,15 +20,11 @@ public class PowerUpManager : MonoBehaviour {
     public AudioSource confusionAudio;
     public AudioSource shieldAudio;
     public AudioSource dashBoostAudio;
-
-    private void OnAudioFilterRead(float[] data, int channels)
-    {
-        
-    } 
-
+   
     // Use this for initialization
     void Start()
     {
+        shieldSpawned = false;
         playerController = transform.parent.gameObject.GetComponent<DuckController>();
         gameManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         baseDashCooldown = playerController.dashCooldown;
@@ -39,7 +36,9 @@ public class PowerUpManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        if (shieldSpawned) {
+            spawnedShield.transform.position = transform.parent.position;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -79,12 +78,14 @@ public class PowerUpManager : MonoBehaviour {
 
     IEnumerator ShieldBoost()
     {
-        shield.SetActive(true);
+        spawnedShield = Instantiate(shield, transformParent);
+        spawnedShield.gameObject.SetActive(true);
+        spawnedShield.transform.parent = null;
+        shieldSpawned = true;
         shieldAudio.Play();
-        playerController.canMoveCooldownTime = 0f;
         yield return new WaitForSeconds(5);
-        shield.SetActive(false);
-        playerController.canMoveCooldownTime = baseCanMoveTime;
+        shieldSpawned = false;
+        Destroy(spawnedShield);   
     }
 
     IEnumerator InvertControls()
