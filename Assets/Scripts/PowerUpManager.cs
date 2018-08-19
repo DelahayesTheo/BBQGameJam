@@ -6,19 +6,16 @@ public class PowerUpManager : MonoBehaviour {
     private DuckController playerController;
 
     public float speedMultiplicator;
-    private float baseWalkingSpeed;
-
     public float dashMultiplicator;
-    private float baseDashSpeed;
 
+    private float baseDashCooldown;
     public Transform transformParent;
 
     // Use this for initialization
     void Start()
     {
         playerController = transform.parent.gameObject.GetComponent<DuckController>();
-        baseWalkingSpeed = playerController.walkingSpeed;
-        baseDashSpeed = playerController.dashSpeed;
+        baseDashCooldown = playerController.dashCooldown;
         transformParent = transform.parent; 
     }
 
@@ -37,6 +34,10 @@ public class PowerUpManager : MonoBehaviour {
                 StartCoroutine(SpeedPowerUp());
             }
 
+            if (name == "DashBoost")
+            {
+                StartCoroutine(DashPowerUp());
+            }
 
             if (name == "SizeBoost")
             {
@@ -56,6 +57,13 @@ public class PowerUpManager : MonoBehaviour {
 
     }
 
+    IEnumerator DashPowerUp()
+    {
+        playerController.dashCooldown = 0.1f;
+        yield return new WaitForSeconds(5);
+        playerController.dashCooldown = baseDashCooldown;
+
+    }
     IEnumerator SizePowerUp()
     {
         transformParent.localScale += new Vector3(.5f, .5f, 0);
