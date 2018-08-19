@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4891756542628596}
   - component: {fileID: 70693012503228258}
+  - component: {fileID: 70685592233306090}
   m_Layer: 0
   m_Name: Bouee
   m_TagString: Bouee
@@ -131,6 +132,21 @@ Transform:
   m_Father: {fileID: 4891756542628596}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &70685592233306090
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1434165038952140}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: b18a79324c2837a4fa42bfde5ae6c3f1, type: 2}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!70 &70693012503228258
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
