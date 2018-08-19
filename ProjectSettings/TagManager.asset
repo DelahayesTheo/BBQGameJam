@@ -9,6 +9,7 @@ TagManager:
   - SizeBoost
   - Bouee
   - ArenaBox
+  - Savon
   layers:
   - Default
   - TransparentFX
