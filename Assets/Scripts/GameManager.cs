@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class GameManager : MonoBehaviour {
     private Text textBox;
@@ -32,8 +33,8 @@ public class GameManager : MonoBehaviour {
         if (gameOver) {
             textBox.fontSize = 25;
             textBox.text = "Le joueur " + winner  + " a gagné";
-
-            if (Input.GetKeyDown("space")) {
+            bool dash = CrossPlatformInputManager.GetButtonDown("Dash1") || CrossPlatformInputManager.GetButtonDown("Dash2") || CrossPlatformInputManager.GetButtonDown("Dash3") || CrossPlatformInputManager.GetButtonDown("Dash4");            
+            if (dash) {
                 SceneManager.LoadScene(1);
             }
         } else {

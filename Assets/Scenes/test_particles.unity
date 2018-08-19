@@ -785,6 +785,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 61140986180266610, guid: f705bf13e9d1b744ea38c8f02846accc,
+        type: 2}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f705bf13e9d1b744ea38c8f02846accc, type: 2}
   m_IsPrefabAsset: 0
@@ -1081,6 +1086,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &910626073 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1538587231438798, guid: f705bf13e9d1b744ea38c8f02846accc,
+    type: 2}
+  m_PrefabInternal: {fileID: 591279198}
+--- !u!250 &910626074
+PointEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 910626073}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceMagnitude: 1
+  m_ForceVariation: 0
+  m_DistanceScale: 1
+  m_ForceSource: 0
+  m_ForceTarget: 0
+  m_ForceMode: 0
+  m_Drag: 0
+  m_AngularDrag: 0
 --- !u!4 &1061453324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4914098124651428, guid: ffeb7c9e572f3884aa993fc1463b7470,
