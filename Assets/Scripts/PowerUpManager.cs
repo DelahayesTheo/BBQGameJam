@@ -17,6 +17,8 @@ public class PowerUpManager : MonoBehaviour {
     public AudioSource sizeAudio;
     public AudioSource speedAudio;
     public AudioSource confusionAudio;
+    public AudioSource shieldAudio;
+    public AudioSource dashBoostAudio;
 
     private void OnAudioFilterRead(float[] data, int channels)
     {
@@ -78,6 +80,7 @@ public class PowerUpManager : MonoBehaviour {
     IEnumerator ShieldBoost()
     {
         shield.SetActive(true);
+        shieldAudio.Play();
         playerController.canMoveCooldownTime = 0f;
         yield return new WaitForSeconds(5);
         shield.SetActive(false);
@@ -104,6 +107,7 @@ public class PowerUpManager : MonoBehaviour {
 
     IEnumerator DashPowerUp()
     {
+        dashBoostAudio.Play();
         playerController.dashCooldown = 0.1f;
         yield return new WaitForSeconds(5);
         playerController.dashCooldown = baseDashCooldown;

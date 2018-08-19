@@ -33,6 +33,7 @@ public class DuckController : MonoBehaviour
 
     public AudioSource deathSource;
     public AudioSource dashSource;
+    public AudioSource boueeSource;
     void Start()
     {
         controlsDirection = 1;
@@ -152,6 +153,10 @@ public class DuckController : MonoBehaviour
         {
             m_Rigidbody2D.drag = 5f;
             m_CanMoveCooldown = canMoveCooldownTime;
+
+            if (collision.gameObject.tag == "Bouee") {
+                boueeSource.Play();
+            }
         }
 
     }
