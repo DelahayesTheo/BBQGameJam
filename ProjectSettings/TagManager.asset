@@ -10,6 +10,7 @@ TagManager:
   - Bouee
   - ArenaBox
   - Savon
+  - DashBoost
   layers:
   - Default
   - TransparentFX
