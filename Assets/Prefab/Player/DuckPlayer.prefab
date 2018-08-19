@@ -396,7 +396,7 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 0.6
   dashSpeed: 500
-  numPlayer: 0
+  numPlayer: 1
   transformParent: 0
   canMoveCooldownTime: 0.5
   dashParticles: {fileID: 198799652141774692}
@@ -426,7 +426,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
