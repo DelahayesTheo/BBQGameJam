@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4718992585615290}
   - component: {fileID: 70038588510575296}
+  - component: {fileID: 114764307777181756}
   m_Layer: 8
   m_Name: SpeedBoost
   m_TagString: SpeedBoost
@@ -85,6 +86,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0.1871288, y: -0.00000002230749}
   m_Size: {x: 2.7964492, y: 1.9730797}
   m_Direction: 1
+--- !u!114 &114764307777181756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1859208010261306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0927da74b13a0ef4b888fb70c0182aaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToLive: 10
 --- !u!212 &212895488110679602
 SpriteRenderer:
   m_ObjectHideFlags: 1

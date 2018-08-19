@@ -235,7 +235,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1631460717047500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2545404, y: -0.5748331, z: 0}
+  m_LocalPosition: {x: -5.46, y: -1.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4067007256647252}
@@ -396,7 +396,7 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 0.6
   dashSpeed: 500
-  numPlayer: 0
+  numPlayer: 1
   transformParent: 0
   canMoveCooldownTime: 0.5
   dashParticles: {fileID: 198799652141774692}
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplicator: 2
-  baseWalkingSpeed: 0
+  dashMultiplicator: 1.25
   transformParent: {fileID: 0}
 --- !u!198 &198024367931008256
 ParticleSystem:

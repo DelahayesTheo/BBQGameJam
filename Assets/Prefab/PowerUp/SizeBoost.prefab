@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4193133187413638}
   - component: {fileID: 61165523579594858}
+  - component: {fileID: 114639545882062976}
   m_Layer: 8
   m_Name: SizeBoost
   m_TagString: SizeBoost
@@ -95,6 +96,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.0360367, y: 2.223166}
   m_EdgeRadius: 0
+--- !u!114 &114639545882062976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1785707957668162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0927da74b13a0ef4b888fb70c0182aaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToLive: 10
 --- !u!212 &212199937559238930
 SpriteRenderer:
   m_ObjectHideFlags: 1

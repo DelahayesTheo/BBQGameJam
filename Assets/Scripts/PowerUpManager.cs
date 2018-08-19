@@ -51,8 +51,9 @@ public class PowerUpManager : MonoBehaviour {
         playerController.walkingSpeed *= speedMultiplicator;
         playerController.dashSpeed *= dashMultiplicator;
         yield return new WaitForSeconds(5);
-        playerController.walkingSpeed /= speedMultiplicator;
         playerController.dashSpeed /= dashMultiplicator;
+        playerController.walkingSpeed /= speedMultiplicator;
+
     }
 
     IEnumerator SizePowerUp()
