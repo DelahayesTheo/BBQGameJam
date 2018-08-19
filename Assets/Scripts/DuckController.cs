@@ -106,4 +106,12 @@ public class DuckController : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "ArenaBox") {
+            m_CanMoveCooldown = 99999f;
+            Destroy(this.gameObject);
+        }
+    }
 }
