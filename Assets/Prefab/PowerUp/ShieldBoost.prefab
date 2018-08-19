@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4712688716690642}
   - component: {fileID: 61599240060159552}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShieldBoost
   m_TagString: ShieldBoost
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4361734697360316}
   - component: {fileID: 212736546525607532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PowerUp_shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
