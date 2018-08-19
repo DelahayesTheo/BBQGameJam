@@ -5,6 +5,9 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class DuckController : MonoBehaviour
 {
+    public float maxMagnitudeInMovements = 15f;
+    public float bounceControl = 0.5f;
+    public float dashControl = 0.5f;
     public float walkingSpeed;
     public float dashDuration;
     public float dashCooldown;
@@ -20,6 +23,7 @@ public class DuckController : MonoBehaviour
     float m_CanMoveCooldown;
     public int controlsDirection;
 
+    public GameObject gameManager;
     private GameManager gameManagerScript;
     Animator m_Animator;
     public ParticleSystem dashParticles;
@@ -32,8 +36,7 @@ public class DuckController : MonoBehaviour
         m_CurrentDashCooldown = 0f;
         lastVelocity = new Vector2(1, 0f);
     }
-
-    float maxVelocityMagnitude;
+    
     private void Update()
     {
         bool dash = CrossPlatformInputManager.GetButtonDown(GetControl(numPlayer, "Dash"));
@@ -43,7 +46,6 @@ public class DuckController : MonoBehaviour
             dashParticles.transform.rotation = Quaternion.LookRotation(-lastVelocity.normalized);
             dashParticles.Play();
         }
-        m_Rigidbody2D.velocity = Vector2.ClampMagnitude(m_Rigidbody2D.velocity, 15f);
     }
 
     public void Dash(Vector2 direction)
@@ -51,11 +53,16 @@ public class DuckController : MonoBehaviour
         m_CurrentDashDuration = dashDuration;
         m_CurrentDashCooldown = dashCooldown;
         m_Rigidbody2D.velocity = Vector2.zero;
-        m_Rigidbody2D.AddForce(direction * dashSpeed * m_Rigidbody2D.mass * controlsDirection);
+        m_Rigidbody2D.AddForce(direction * dashSpeed * m_Rigidbody2D.mass);
+        m_Rigidbody2D.velocity = Vector2.ClampMagnitude(m_Rigidbody2D.velocity, maxMagnitudeInMovements);
     }
 
     void FixedUpdate()
     {
+        float h = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Horizontal"));
+        float v = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Vertical"));
+        h *= controlsDirection;
+        v *= controlsDirection;
         if (m_CanMoveCooldown > 0f)
         {
             m_CanMoveCooldown -= Time.deltaTime;
@@ -63,16 +70,22 @@ public class DuckController : MonoBehaviour
             {
                 m_Rigidbody2D.drag = 1f;
             }
-            else { return; }
+            else
+            {
+                // Bounce control
+                m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x + h * bounceControl, m_Rigidbody2D.velocity.y + v * bounceControl);
+                m_Rigidbody2D.velocity = Vector2.ClampMagnitude(m_Rigidbody2D.velocity, maxMagnitudeInMovements);
+                return;
+            }
 
         }
-        float h = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Horizontal"));
-        float v = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Vertical"));
 
         // Movement freeze after dash activation
         if (m_CurrentDashDuration > 0f)
         {
             m_CurrentDashDuration -= Time.deltaTime;
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x + h * dashControl, m_Rigidbody2D.velocity.y + v * dashControl);
+            m_Rigidbody2D.velocity = Vector2.ClampMagnitude(m_Rigidbody2D.velocity, maxMagnitudeInMovements);
             return;
         }
 
@@ -85,20 +98,22 @@ public class DuckController : MonoBehaviour
         if (m_CurrentDashCooldown > 0f)
         {
             m_CurrentDashCooldown -= Time.deltaTime;
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x + h * dashControl, m_Rigidbody2D.velocity.y + v * dashControl);
             m_Rigidbody2D.velocity = Vector2.Lerp(m_Rigidbody2D.velocity, Vector2.zero, Time.deltaTime * 2);
             return;
         }
 
-        m_Animator.SetFloat("horizontal", h * controlsDirection );
-        m_Animator.SetFloat("vertical", v * controlsDirection);
-
-        // Save last velocity
+        m_Animator.SetFloat("horizontal", h);
+        m_Animator.SetFloat("vertical", v);
+        
         if (!Mathf.Approximately(h, 0f) || !Mathf.Approximately(v, 0f))
         {
             // Actual movement
-            m_Rigidbody2D.velocity = new Vector2(h * walkingSpeed * controlsDirection, v * walkingSpeed * controlsDirection);
+            m_Rigidbody2D.velocity = new Vector2(h * walkingSpeed, v * walkingSpeed);
+            // Save last velocity
             lastVelocity = new Vector2(h, v);
         }
+        m_Rigidbody2D.velocity = Vector2.ClampMagnitude(m_Rigidbody2D.velocity, maxMagnitudeInMovements);
     }
 
     IEnumerator DeathAnimation ()
