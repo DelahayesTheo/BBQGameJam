@@ -59,8 +59,10 @@ public class PowerUpManager : MonoBehaviour {
     IEnumerator SizePowerUp()
     {
         transformParent.localScale += new Vector3(.5f, .5f, 0);
+        transformParent.GetComponent<Rigidbody2D>().mass += 1;
         yield return new WaitForSeconds(5);
         transformParent.localScale -= new Vector3(.5f, .5f, 0);
+        transformParent.GetComponent<Rigidbody2D>().mass -= 1;
     }
 
 

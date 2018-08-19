@@ -398,7 +398,8 @@ MonoBehaviour:
   dashSpeed: 500
   numPlayer: 2
   transformParent: 0
-  canMoveCooldownTime: 0.5
+  canMoveCooldownTime: 0.3
+  maxVelocity: {x: 15, y: 15}
   dashParticles: {fileID: 198225309728188116}
 --- !u!114 &114897747604649856
 MonoBehaviour:

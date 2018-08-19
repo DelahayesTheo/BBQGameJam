@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class DuckController : MonoBehaviour
@@ -10,7 +12,7 @@ public class DuckController : MonoBehaviour
     public int numPlayer;
     public float transformParent;
     public float canMoveCooldownTime;
-
+    public Vector2 maxVelocity;
     Rigidbody2D m_Rigidbody2D;
     float m_CurrentDashCooldown;
     float m_CurrentDashDuration;
@@ -47,6 +49,12 @@ public class DuckController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (m_Rigidbody2D.velocity.x > maxVelocity.x) {
+            m_Rigidbody2D.velocity = new Vector2 (maxVelocity.x, m_Rigidbody2D.velocity.y);
+        }
+        if (m_Rigidbody2D.velocity.y > maxVelocity.y) {
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.y, maxVelocity.y);
+        }
         if (m_CanMoveCooldown > 0f)
         {
             m_CanMoveCooldown -= Time.deltaTime;
@@ -92,6 +100,13 @@ public class DuckController : MonoBehaviour
         }
     }
 
+    IEnumerator DeathAnimation ()
+    {
+        m_Animator.SetBool("isDead", true);
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
+    }
+
     private string GetControl(int numPlayer, string action)
     {
         return action + (numPlayer > 0 ? numPlayer : 1);
@@ -111,7 +126,7 @@ public class DuckController : MonoBehaviour
     {
         if (collision.gameObject.tag == "ArenaBox") {
             m_CanMoveCooldown = 99999f;
-            Destroy(this.gameObject);
+            StartCoroutine(DeathAnimation());
         }
     }
 }
