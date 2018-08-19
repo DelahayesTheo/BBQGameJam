@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: canards_colverts_override
+  m_Controller: {fileID: 9100000, guid: fabacf887f819a848843561c7b2f8825, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 678d1063c8802254ca39e14d0765819f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3c48150e60d50144c8d5b729b0acaecb, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 21810e0050b17824391a7af9665346c5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6135e956b9e1c3742a097d576d6e565c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d2705d29bba1a88409da9ba4583d1041, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 28b89e7687966d74ab140a8fcd53be88, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4cf155c41d4c4d247ad99b139e74a282, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8a20cc56be61b3043a9f6b5081856611, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b12223a37e5ca91428134edd5b12531c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 58b091ee65df40e448c8849d8c6e1fd6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 92712e31a094cc9438901f013990d73c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 772c4c29d4d4f8940abcedac7b66c9fa, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1944f1030eed0964a96af00d35f33235, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 458563ec870f9ad4fba2bf75f7c91681, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8923a96d26c41da4eb3555cb8ba208de, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7b1a555025ae39b4dacbf45a656a89d9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ff02f883f06fadd4783dfd7f40573281, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ff02f883f06fadd4783dfd7f40573281, type: 2}

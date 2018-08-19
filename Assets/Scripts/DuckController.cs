@@ -47,7 +47,7 @@ public class DuckController : MonoBehaviour
         m_CurrentDashDuration = dashDuration;
         m_CurrentDashCooldown = dashCooldown;
         m_Rigidbody2D.velocity = Vector2.zero;
-        m_Rigidbody2D.AddForce(direction * dashSpeed);
+        m_Rigidbody2D.AddForce(direction * dashSpeed * transform.localScale.x);
     }
 
     void FixedUpdate()
@@ -99,7 +99,7 @@ public class DuckController : MonoBehaviour
 
     IEnumerator DeathAnimation ()
     {
-        m_Animator.SetBool("isDead", true);
+        m_Animator.SetTrigger("die");
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
