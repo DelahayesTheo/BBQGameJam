@@ -29,7 +29,7 @@ public class DuckController : MonoBehaviour
     private GameManager gameManagerScript;
     Animator m_Animator;
     public ParticleSystem dashParticles;
-
+    public ParticleSystem grabPowerup;
     public AudioSource deathSource;
     public AudioSource dashSource;
     public AudioSource boueeSource;

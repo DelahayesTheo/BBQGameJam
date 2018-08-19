@@ -14,7 +14,7 @@ public class PowerUpManager : MonoBehaviour {
     private float baseDashCooldown;
     private float baseCanMoveTime;
     public Transform transformParent;
-
+    public CircleCollider2D bumpCollider;
     public AudioSource sizeAudio;
     public AudioSource speedAudio;
     public AudioSource confusionAudio;
@@ -37,6 +37,7 @@ public class PowerUpManager : MonoBehaviour {
     void Update()
     {
         if (shieldSpawned) {
+            spawnedShield.gameObject.SetActive(true);
             spawnedShield.transform.position = transform.parent.position;
         }
     }
@@ -49,6 +50,7 @@ public class PowerUpManager : MonoBehaviour {
             {
                 return;
             }
+            playerController.grabPowerup.Play();
             if (name == "SpeedBoost")
             {
                 StartCoroutine(SpeedPowerUp());
@@ -79,12 +81,14 @@ public class PowerUpManager : MonoBehaviour {
     IEnumerator ShieldBoost()
     {
         spawnedShield = Instantiate(shield, transformParent);
-        spawnedShield.gameObject.SetActive(true);
+        bumpCollider.enabled = false;
+        spawnedShield.gameObject.SetActive(false);
         spawnedShield.transform.parent = null;
         shieldSpawned = true;
         shieldAudio.Play();
         yield return new WaitForSeconds(5);
         shieldSpawned = false;
+        bumpCollider.enabled = true;
         Destroy(spawnedShield);   
     }
 
