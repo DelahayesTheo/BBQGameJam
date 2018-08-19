@@ -11,6 +11,7 @@ public class PowerUpManager : MonoBehaviour {
 
     private GameManager gameManagerScript;
     private float baseDashCooldown;
+    private float baseCanMoveTime;
     public Transform transformParent;
 
     // Use this for initialization
@@ -19,7 +20,9 @@ public class PowerUpManager : MonoBehaviour {
         playerController = transform.parent.gameObject.GetComponent<DuckController>();
         gameManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         baseDashCooldown = playerController.dashCooldown;
-        transformParent = transform.parent; 
+        baseCanMoveTime = playerController.canMoveCooldownTime;
+        transformParent = transform.parent;
+        shield.SetActive(false);
     }
 
     // Update is called once per frame
@@ -62,8 +65,10 @@ public class PowerUpManager : MonoBehaviour {
     IEnumerator ShieldBoost()
     {
         shield.SetActive(true);
+        playerController.canMoveCooldownTime = 0f;
         yield return new WaitForSeconds(5);
         shield.SetActive(false);
+        playerController.canMoveCooldownTime = baseCanMoveTime;
     }
 
     IEnumerator InvertControls()

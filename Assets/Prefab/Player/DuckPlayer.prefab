@@ -390,9 +390,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009256363, y: 0}
+  m_Offset: {x: -0.0071384907, y: 0}
   serializedVersion: 2
-  m_Radius: 0.58330774
+  m_Radius: 0.6324918
 --- !u!58 &58547354434212318
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -5011,12 +5011,12 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1644778438236402}
   serializedVersion: 5
-  lengthInSec: 0.1
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

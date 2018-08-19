@@ -458,10 +458,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00ed2d2c8b2965439ad62795a5a7a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shield: {fileID: 0}
+  shield: {fileID: 1588087503251652}
   speedMultiplicator: 2
   dashMultiplicator: 1.25
-  transformParent: {fileID: 4508279532071430}
+  transformParent: {fileID: 0}
 --- !u!198 &198125556763202316
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -9582,7 +9582,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
