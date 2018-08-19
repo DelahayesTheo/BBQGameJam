@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour {
     {
         for (int i = 0; i < players.Length; i++)
         {
-            if (i != numPlayer) {
+            if (i != numPlayer && players[i] != null) {
                 players[i].GetComponent<DuckController>().controlsDirection = -1;
             }
         }
@@ -77,7 +77,10 @@ public class GameManager : MonoBehaviour {
     {
         for (int i = 0; i < players.Length; i++)
         {
-            players[i].GetComponent<DuckController>().controlsDirection = 1;
+            if (players[i] != null)
+            {
+                players[i].GetComponent<DuckController>().controlsDirection = 1;
+            }
         }
     }
     IEnumerator WaitForCountdown() 
