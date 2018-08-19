@@ -17,12 +17,15 @@ public class DuckController : MonoBehaviour
     float m_CurrentDashCooldown;
     float m_CurrentDashDuration;
     Vector2 lastVelocity;
-    float m_CanMoveCooldown;
+    public float m_CanMoveCooldown;
 
+    public GameObject gameManager;
+    private GameManager gameManagerScript;
     Animator m_Animator;
     public ParticleSystem dashParticles;
     void Start()
     {
+        gameManagerScript = gameManager.GetComponent<GameManager>();
         m_Animator = transform.GetComponentInChildren<Animator>();
         m_Rigidbody2D = transform.GetComponent<Rigidbody2D>();
         m_CurrentDashCooldown = 0f;
@@ -99,6 +102,7 @@ public class DuckController : MonoBehaviour
 
     IEnumerator DeathAnimation ()
     {
+        gameManagerScript.playersDead[numPlayer - 1] = true;
         m_Animator.SetTrigger("die");
         yield return new WaitForSeconds(1);
         Destroy(gameObject);

@@ -2,24 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     private Text textBox;
     private Canvas canvas;
+    public bool[] playersDead;
+
+    private int nbPlayerDead;
+    private int winner;
+    private bool gameOver;
 	// Use this for initialization
 	void Start () {
+        playersDead = new bool[] { false, false, false, false };
         textBox = GetComponentInChildren<Text>();
         Time.timeScale = 0;
 
         StartCoroutine(WaitToResumeGame());
-
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+        if (gameOver) {
+            textBox.fontSize = 25;
+            textBox.text = "Le joueur " + winner  + " a gagné";
+
+            if (Input.GetKeyDown("space")) {
+                SceneManager.LoadScene(1);
+            }
+        } else {
+            nbPlayerDead = 0;
+
+            for (int i = 0; i < playersDead.Length; i++)
+            {
+                if (playersDead[i])
+                {
+                    nbPlayerDead++;
+                }
+            }
+
+            if (nbPlayerDead >= 3)
+            {
+                gameOver = true;
+                for (int i = 0; i < playersDead.Length; i++)
+                {
+                    if (!playersDead[i])
+                    {
+                        winner = i+1;
+                    }
+                }
+            }
+
+        }
+
+    }
 
     IEnumerator WaitForCountdown() 
     {

@@ -400,6 +400,7 @@ MonoBehaviour:
   transformParent: 0
   canMoveCooldownTime: 0.3
   maxVelocity: {x: 15, y: 15}
+  gameManager: {fileID: 0}
   dashParticles: {fileID: 198818183162074848}
 --- !u!114 &114760919613853730
 MonoBehaviour:
