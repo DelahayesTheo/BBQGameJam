@@ -25,7 +25,10 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         if (gameOver) {
             textBox.fontSize = 25;
             textBox.text = "Le joueur " + winner  + " a gagné";
