@@ -22,11 +22,17 @@ public class DuckController : MonoBehaviour
     Vector2 lastVelocity;
     float m_CanMoveCooldown;
     public int controlsDirection;
+    private float posX;
+    private float posY;
 
+    private bool isDead;
     public GameObject gameManager;
     private GameManager gameManagerScript;
     Animator m_Animator;
     public ParticleSystem dashParticles;
+
+    public AudioSource deathSource;
+    public AudioSource dashSource;
     void Start()
     {
         controlsDirection = 1;
@@ -45,6 +51,7 @@ public class DuckController : MonoBehaviour
             Dash(lastVelocity.normalized);
             dashParticles.transform.rotation = Quaternion.LookRotation(-lastVelocity.normalized);
             dashParticles.Play();
+            dashSource.Play();
         }
     }
 
@@ -59,67 +66,77 @@ public class DuckController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float h = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Horizontal"));
-        float v = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Vertical"));
-        h *= controlsDirection;
-        v *= controlsDirection;
-        if (m_CanMoveCooldown > 0f)
-        {
-            m_CanMoveCooldown -= Time.deltaTime;
-            if (m_CanMoveCooldown <= 0f)
+        if (isDead) {
+            transform.position = new Vector2(posX, posY);
+        } else {
+            float h = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Horizontal"));
+            float v = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Vertical"));
+            h *= controlsDirection;
+            v *= controlsDirection;
+            if (m_CanMoveCooldown > 0f)
             {
-                m_Rigidbody2D.drag = 1f;
+                m_CanMoveCooldown -= Time.deltaTime;
+                if (m_CanMoveCooldown <= 0f)
+                {
+                    m_Rigidbody2D.drag = 1f;
+                }
+                else
+                {
+                    // Bounce control
+                    m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x + h * bounceControl, m_Rigidbody2D.velocity.y + v * bounceControl);
+                    m_Rigidbody2D.velocity = Vector2.ClampMagnitude(m_Rigidbody2D.velocity, maxMagnitudeInMovements);
+                    return;
+                }
+
             }
-            else
+
+            // Movement freeze after dash activation
+            if (m_CurrentDashDuration > 0f)
             {
-                // Bounce control
-                m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x + h * bounceControl, m_Rigidbody2D.velocity.y + v * bounceControl);
+                m_CurrentDashDuration -= Time.deltaTime;
+                m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x + h * dashControl, m_Rigidbody2D.velocity.y + v * dashControl);
                 m_Rigidbody2D.velocity = Vector2.ClampMagnitude(m_Rigidbody2D.velocity, maxMagnitudeInMovements);
                 return;
             }
 
-        }
+            if (!dashParticles.isStopped)
+            {
+                dashParticles.Stop();
+            }
 
-        // Movement freeze after dash activation
-        if (m_CurrentDashDuration > 0f)
-        {
-            m_CurrentDashDuration -= Time.deltaTime;
-            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x + h * dashControl, m_Rigidbody2D.velocity.y + v * dashControl);
+            // Dash cooldown
+            if (m_CurrentDashCooldown > 0f)
+            {
+                m_CurrentDashCooldown -= Time.deltaTime;
+                m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x + h * dashControl, m_Rigidbody2D.velocity.y + v * dashControl);
+                m_Rigidbody2D.velocity = Vector2.Lerp(m_Rigidbody2D.velocity, Vector2.zero, Time.deltaTime * 2);
+                return;
+            }
+
+            m_Animator.SetFloat("horizontal", h);
+            m_Animator.SetFloat("vertical", v);
+
+            if (!Mathf.Approximately(h, 0f) || !Mathf.Approximately(v, 0f))
+            {
+                // Actual movement
+                m_Rigidbody2D.velocity = new Vector2(h * walkingSpeed, v * walkingSpeed);
+                // Save last velocity
+                lastVelocity = new Vector2(h, v);
+            }
             m_Rigidbody2D.velocity = Vector2.ClampMagnitude(m_Rigidbody2D.velocity, maxMagnitudeInMovements);
-            return;
         }
 
-        if (!dashParticles.isStopped)
-        {
-            dashParticles.Stop();
-        }
-
-        // Dash cooldown
-        if (m_CurrentDashCooldown > 0f)
-        {
-            m_CurrentDashCooldown -= Time.deltaTime;
-            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x + h * dashControl, m_Rigidbody2D.velocity.y + v * dashControl);
-            m_Rigidbody2D.velocity = Vector2.Lerp(m_Rigidbody2D.velocity, Vector2.zero, Time.deltaTime * 2);
-            return;
-        }
-
-        m_Animator.SetFloat("horizontal", h);
-        m_Animator.SetFloat("vertical", v);
-        
-        if (!Mathf.Approximately(h, 0f) || !Mathf.Approximately(v, 0f))
-        {
-            // Actual movement
-            m_Rigidbody2D.velocity = new Vector2(h * walkingSpeed, v * walkingSpeed);
-            // Save last velocity
-            lastVelocity = new Vector2(h, v);
-        }
-        m_Rigidbody2D.velocity = Vector2.ClampMagnitude(m_Rigidbody2D.velocity, maxMagnitudeInMovements);
     }
 
     IEnumerator DeathAnimation ()
     {
+        posX = transform.position.x;
+        posY = transform.position.y;
         gameManagerScript.playersDead[numPlayer - 1] = true;
+        deathSource.Play();
+        m_Rigidbody2D.isKinematic = true;
         m_Animator.SetTrigger("die");
+
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
@@ -144,6 +161,7 @@ public class DuckController : MonoBehaviour
         if (collision.gameObject.tag == "ArenaBox") {
             m_CanMoveCooldown = 99999f;
             StartCoroutine(DeathAnimation());
+            isDead = true;
         }
     }
 }
