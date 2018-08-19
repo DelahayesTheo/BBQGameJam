@@ -21,6 +21,7 @@ public class DuckController : MonoBehaviour
     float m_CurrentDashDuration;
     Vector2 lastVelocity;
     float m_CanMoveCooldown;
+    public int controlsDirection;
 
     public GameObject gameManager;
     private GameManager gameManagerScript;
@@ -28,6 +29,7 @@ public class DuckController : MonoBehaviour
     public ParticleSystem dashParticles;
     void Start()
     {
+        controlsDirection = 1;
         gameManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         m_Animator = transform.GetComponentInChildren<Animator>();
         m_Rigidbody2D = transform.GetComponent<Rigidbody2D>();
@@ -59,7 +61,8 @@ public class DuckController : MonoBehaviour
     {
         float h = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Horizontal"));
         float v = CrossPlatformInputManager.GetAxis(GetControl(numPlayer, "Vertical"));
-
+        h *= controlsDirection;
+        v *= controlsDirection;
         if (m_CanMoveCooldown > 0f)
         {
             m_CanMoveCooldown -= Time.deltaTime;

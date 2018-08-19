@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PowerUpManager : MonoBehaviour {
     private DuckController playerController;
+    public GameObject shield;
 
     public float speedMultiplicator;
     public float dashMultiplicator;
 
+    private GameManager gameManagerScript;
     private float baseDashCooldown;
     public Transform transformParent;
 
@@ -15,6 +17,7 @@ public class PowerUpManager : MonoBehaviour {
     void Start()
     {
         playerController = transform.parent.gameObject.GetComponent<DuckController>();
+        gameManagerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         baseDashCooldown = playerController.dashCooldown;
         transformParent = transform.parent; 
     }
@@ -29,6 +32,10 @@ public class PowerUpManager : MonoBehaviour {
     {
         if (collision.gameObject.layer == 8) {
             name = collision.gameObject.tag;
+            if(name == null)
+            {
+                return;
+            }
             if (name == "SpeedBoost")
             {
                 StartCoroutine(SpeedPowerUp());
@@ -39,12 +46,35 @@ public class PowerUpManager : MonoBehaviour {
                 StartCoroutine(DashPowerUp());
             }
 
+            if (name == "InvertControls")
+            {
+                StartCoroutine(InvertControls());
+            }
+
             if (name == "SizeBoost")
             {
                 StartCoroutine(SizePowerUp());
             }
+
+            if (name == "ShieldBoost") {
+                StartCoroutine(ShieldBoost());
+            }
             Destroy(collision.gameObject);
         }
+    }
+
+    IEnumerator ShieldBoost()
+    {
+        shield.SetActive(true);
+        yield return new WaitForSeconds(5);
+        shield.SetActive(false);
+    }
+
+    IEnumerator InvertControls()
+    {
+        gameManagerScript.InvertControls(playerController.numPlayer - 1);
+        yield return new WaitForSeconds(5);
+        gameManagerScript.RestoreControls();
     }
 
     IEnumerator SpeedPowerUp()
@@ -54,7 +84,6 @@ public class PowerUpManager : MonoBehaviour {
         yield return new WaitForSeconds(5);
         playerController.dashSpeed /= dashMultiplicator;
         playerController.walkingSpeed /= speedMultiplicator;
-
     }
 
     IEnumerator DashPowerUp()
