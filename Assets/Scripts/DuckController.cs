@@ -17,7 +17,7 @@ public class DuckController : MonoBehaviour
     float m_CurrentDashCooldown;
     float m_CurrentDashDuration;
     Vector2 lastVelocity;
-    public float m_CanMoveCooldown;
+    float m_CanMoveCooldown;
 
     public GameObject gameManager;
     private GameManager gameManagerScript;
